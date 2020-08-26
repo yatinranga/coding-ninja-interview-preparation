@@ -14,14 +14,21 @@ public class PrintLevelWise {
 		pendingQueue.add(root);
 
 		while (!pendingQueue.isEmpty()) {
-			root = pendingQueue.poll();
 
-			System.out.print(root.data + " ");
+			int n = pendingQueue.size();
 
-			for (int i = 0; i < root.children.size(); i++) {
-				pendingQueue.add(root.children.get(i));
+			while (n > 0) {
+
+				root = pendingQueue.poll();
+				System.out.print(root.data + " ");
+
+				for (int i = 0; i < root.children.size(); i++) {
+					pendingQueue.add(root.children.get(i));
+				}
+				n--;
 			}
 
+			System.out.println();
 		}
 
 	}
