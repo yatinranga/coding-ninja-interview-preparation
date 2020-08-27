@@ -10,7 +10,7 @@ public class PrintNodesAtDepth {
 			return;
 
 		if (depth == 1) {
-			System.out.println(root.data);
+			System.out.print(root.data + " ");
 			return;
 		}
 
