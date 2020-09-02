@@ -1,7 +1,7 @@
 package binary_tree;
 
 public class Pair<T, V> {
-	T first;
-	V second;
+	public T first;
+	public V second;
 
 }
