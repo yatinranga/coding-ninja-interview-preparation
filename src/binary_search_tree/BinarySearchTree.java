@@ -71,6 +71,42 @@ public class BinarySearchTree {
 
 	}
 
+	private BinaryTreeNode<Integer> deleteHelper(BinaryTreeNode<Integer> root, int data) {
+
+		if (root == null)
+			return null;
+
+		if (data > root.data) {
+			root.right = deleteHelper(root.right, data);
+			return root;
+		} else if (data < root.data) {
+			root.left = deleteHelper(root.left, data);
+			return root;
+		} else {
+			if (root.left == null && root.right == null) {
+				return null;
+			} else if (root.left == null) {
+				return root.right;
+			} else if (root.right == null) {
+				return root.left;
+			} else {
+				BinaryTreeNode<Integer> minNode = root.right;
+				while (minNode.left != null) {
+					minNode = minNode.left;
+				}
+				root.data = minNode.data;
+				root.right = deleteHelper(root.right, minNode.data);
+				return root;
+			}
+		}
+
+	}
+
+	public BinaryTreeNode<Integer> delete(int data) {
+		root = deleteHelper(root, data);
+		return root;
+	}
+
 	public void printTree() {
 		printTreeHelper(root);
 	}
@@ -98,6 +134,9 @@ public class BinarySearchTree {
 		bst.insert(15);
 		bst.insert(3);
 		bst.insert(7);
+		bst.printTree();
+		bst.delete(10);
+		System.out.println();
 		bst.printTree();
 
 	}
