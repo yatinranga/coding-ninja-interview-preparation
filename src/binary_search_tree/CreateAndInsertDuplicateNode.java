@@ -69,20 +69,20 @@ public class CreateAndInsertDuplicateNode {
 	public static void insertDuplicateNode(BinaryTreeNode<Integer> root) {
 		if (root == null)
 			return;
-//
-//		insertDuplicateNode(root.left);
-//		BinaryTreeNode<Integer> duplicate = new BinaryTreeNode<Integer>(root.data);
-//		duplicate.left = root.left;
-//		root.left = duplicate;
-//		insertDuplicateNode(root.right);
 
-		BinaryTreeNode<Integer> newNode = new BinaryTreeNode<Integer>(root.data);
-		BinaryTreeNode<Integer> rootLeft = root.left;
-		root.left = newNode;
-		newNode.left = rootLeft;
-
-		insertDuplicateNode(rootLeft);
+		insertDuplicateNode(root.left);
+		BinaryTreeNode<Integer> duplicate = new BinaryTreeNode<Integer>(root.data);
+		duplicate.left = root.left;
+		root.left = duplicate;
 		insertDuplicateNode(root.right);
+
+//		BinaryTreeNode<Integer> newNode = new BinaryTreeNode<Integer>(root.data);
+//		BinaryTreeNode<Integer> rootLeft = root.left;
+//		root.left = newNode;
+//		newNode.left = rootLeft;
+//
+//		insertDuplicateNode(rootLeft);
+//		insertDuplicateNode(root.right);
 
 	}
 
