@@ -8,7 +8,24 @@ import binary_tree.TakeInputLevelWise;
 public class LowestCommonAncestor {
 
 	public static int lcaBinaryTree(BinaryTreeNode<Integer> root, int a, int b) {
-		return 0;
+
+		if (root == null)
+			return -1;
+
+		if (root.data == a | root.data == b)
+			return root.data;
+
+		int left = lcaBinaryTree(root.left, a, b);
+		int right = lcaBinaryTree(root.right, a, b);
+
+		if (left != -1 && right != -1)
+			return root.data;
+
+		if (left != -1)
+			return left;
+		else
+			return right;
+
 	}
 
 	public static void main(String[] args) {
