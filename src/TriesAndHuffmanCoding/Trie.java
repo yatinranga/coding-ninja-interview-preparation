@@ -42,7 +42,7 @@ public class Trie {
 		add(root, word);
 	}
 
-	public boolean search(TrieNode root, String word) {
+	private boolean search(TrieNode root, String word) {
 		if (word.length() == 0)
 			return root.isTerminating;
 
@@ -62,6 +62,25 @@ public class Trie {
 
 	public boolean search(String word) {
 		return search(root, word);
+	}
+
+	private void remove(TrieNode root, String word) {
+		if (word.length() == 0) {
+			root.isTerminating = false;
+			return;
+		}
+
+		int childIndex = word.charAt(0) - 'a';
+		TrieNode child = root.children[childIndex];
+
+		if (child == null) {
+			return;
+		} else
+			remove(child, word.substring(1));
+	}
+
+	public void remove(String word) {
+		remove(root, word);
 	}
 
 }
