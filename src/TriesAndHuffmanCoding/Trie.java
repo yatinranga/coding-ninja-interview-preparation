@@ -42,4 +42,26 @@ public class Trie {
 		add(root, word);
 	}
 
+	public boolean search(TrieNode root, String word) {
+		if (word.length() == 0)
+			return root.isTerminating;
+
+		int childIndex = word.charAt(0) - 'a';
+		TrieNode child = root.children[childIndex];
+		if (child != null) {
+			boolean ans = search(child, word.substring(1));
+			if (ans)
+				return true;
+			else
+				return false;
+		}
+
+		return false;
+
+	}
+
+	public boolean search(String word) {
+		return search(root, word);
+	}
+
 }
