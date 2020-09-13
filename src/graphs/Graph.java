@@ -1,5 +1,7 @@
 package graphs;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Graph {
@@ -27,6 +29,36 @@ public class Graph {
 
 	}
 
+	private static void printBFSHelper(int edges[][], int sv, boolean visited[]) {
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.add(sv);
+		visited[sv] = true;
+		int n = edges.length;
+
+		while (!queue.isEmpty()) {
+			int front = queue.poll();
+			System.out.println(front);
+
+			for (int i = 0; i < n; i++) {
+				if (edges[front][i] == 1 && !visited[i]) {
+					queue.add(i);
+					visited[i] = true;
+				}
+			}
+
+		}
+
+	}
+
+	public static void printBFS(int edges[][]) {
+		boolean visited[] = new boolean[edges.length];
+		for (int i = 0; i < visited.length; i++) {
+			if (!visited[i]) {
+				printBFSHelper(edges, i, visited);
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
@@ -43,6 +75,8 @@ public class Graph {
 
 		System.out.println("DFS");
 		printDFS(edges);
+		System.out.println("BFS");
+		printBFS(edges);
 
 	}
 
