@@ -2,6 +2,12 @@ package dp;
 
 public class Fibonacci1 {
 
+	public static int fibWithoutDP(int n) {
+		if (n == 0 || n == 1)
+			return n;
+		return fibWithoutDP(n - 1) + fibWithoutDP(n - 2);
+	}
+
 	private static int fibHelper(int n, int[] fibArray) {
 		if (n == 0 || n == 1) {
 			fibArray[n] = n;
@@ -27,8 +33,11 @@ public class Fibonacci1 {
 
 	public static void main(String[] args) {
 
-		int n = 4;
+		int n = 45;
 		System.out.println(fib(n));
+		
+		// A lot of time is taken for result without using DP
+		System.out.println(fibWithoutDP(n));
 	}
 
 }
