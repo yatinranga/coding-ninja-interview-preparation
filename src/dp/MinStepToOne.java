@@ -2,6 +2,7 @@ package dp;
 
 public class MinStepToOne {
 
+	// finding min step to 1 using recursion
 	public static int countSteps(int n) {
 
 		// base case
@@ -28,9 +29,49 @@ public class MinStepToOne {
 
 	}
 
+	private static int countStepsusingMemoization(int n, int[] storage) {
+
+		// base case
+		if (n == 1) {
+			storage[n] = 0;
+			return storage[n];
+		}
+
+		if (storage[n] != 0) {
+			return storage[n];
+		}
+
+		// substarct 1 option
+		int opt1 = countStepsusingMemoization(n - 1, storage);
+		int minSteps = opt1;
+
+		// divide by 3 option
+		if (n % 3 == 0) {
+			int opt2 = countStepsusingMemoization(n / 3, storage);
+			minSteps = opt2 < minSteps ? opt2 : minSteps;
+		}
+
+		// divide by option 2
+		if (n % 2 == 0) {
+			int opt3 = countStepsusingMemoization(n / 2, storage);
+			minSteps = opt3 < minSteps ? opt3 : minSteps;
+		}
+
+		storage[n] = 1 + minSteps;
+
+		return storage[n];
+
+	}
+
+	public static int countStepsusingMemoization(int n) {
+		int[] storage = new int[n + 1];
+		return countStepsusingMemoization(n, storage);
+	}
+
 	public static void main(String[] args) {
 
-		int n = 12;
+		int n = 120;
+		System.out.println(countStepsusingMemoization(n));
 		System.out.println(countSteps(n));
 
 	}
